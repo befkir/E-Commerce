@@ -3,9 +3,9 @@
     ViewData["Title"] = "Index";
 }
 
-<div class="container p-3">
+<div class="container row p-3">
     <div class="col-6 text-primary"> <h2>Category List</h2> </div>
-    <div class="col-6">Create New Category</div>
+    <div class="col-6"><a asp-controller="Category" asp-action="Create" class="btn btn-primary">Create New Category</a></div>
 </div>
 
 @if (Model!=null && Model.Count() > 0)
@@ -27,6 +27,12 @@
                 <tr>
                     <td>@entry.Name</td>
                     <td>@entry.DisplayOrder</td>
+                    <td class="text-center">
+                        <div class="w-75 btn-group" role="group">
+                            <a asp-controller="Category" asp-route-Id="@entry.Id" asp-action="Edit" class="btn btn-primary">Edit</a>
+                            <a asp-controller="Category" asp-route-Id="@entry.Id" asp-action="Delete" class="btn btn-danger">Delete</a>
+                        </div>
+                    </td>
                 </tr>
             }
         </tbody>
