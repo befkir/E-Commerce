@@ -16,5 +16,22 @@ namespace E_Commerce.Controllers
             List<Category> objDiaryCategoryList = _db.Categories.ToList();
             return View(objDiaryCategoryList);
         }
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Category obj)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Categories.Add(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(obj);
+        }
     }
 }
